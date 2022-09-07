@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+        stages {
+            stage ('Clone') {
+                steps {
+                    git branch: 'main', url: 'https://github.com/sanjussss/devops-june-2022.git'
+                        
+                }  
+                    
+            }
+            stage ("Build") {
+                steps {
+                    sh '''pwd
+                    cd  Docker/app/maven
+                    docker build -t  sandeshhm/my-app-1.0 .'''
+                }
+            }
+            stage ("Docker Run" ) {
+                steps {
+                    sh ''' docker run -it -d -p 8065:8080  sandeshhm/my-app-1.0 '''
+                }
+            }  
+            stage ("Docker Push") {
+                steps {
+                    sh ''' docker tag sandeshhm/my-app-1.0 sandeshhm/test
+                    docker push sandeshhm/test ''' 
+                }
+            }
+        }
+}

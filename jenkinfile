@@ -17,7 +17,7 @@ pipeline {
             }
             stage ("Docker deploy" ) {
                 steps {
-                    sh ''' docker run -it -d -p 8067:8080  sandeshhm/my-app-1.0 '''
+                    sh ''' docker run -it -d -p 8055:8080  sandeshhm/my-app-1.0 '''
                 }
             }  
            

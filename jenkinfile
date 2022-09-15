@@ -20,6 +20,12 @@ pipeline {
                     sh ''' docker run -it -d -p 8067:8080  sandeshhm/my-app-1.0 '''
                 }
             }  
+            stage ("Docker Push") {
+                steps {
+                    sh ''' 
+                    docker push sandeshhm/my-app:1.0 ''' 
+                }
+            }
            
         }
 }
